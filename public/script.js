@@ -1,6 +1,3 @@
-// Parse the URL query string
-const urlParams = new URLSearchParams(window.location.search);
-
 // Get the form element
 const form = document.getElementById('paymentForm');
 
@@ -18,14 +15,9 @@ function setCookie(name, value, minutes) {
 // Example of setting a cookie valid for 10 minutes
 setCookie("session_cookie", "session_value", 10);  // Set a cookie valid for 10 minutes
 
-// Insert the payment initiation data into the form
-for (const [key, value] of urlParams) {
-  const input = document.createElement('input');
-  input.type = 'hidden';
-  input.name = key;
-  input.value = value;
-  form.appendChild(input);
+// The payment fields must be rendered and signed by the server for one store
+// order. Never build them from the URL: anyone can craft a link whose fields
+// are signed for a different merchant profile.
+if (form && form.elements.namedItem('signature')) {
+  form.submit();
 }
-
-// Automatically submit the form
-form.submit();
