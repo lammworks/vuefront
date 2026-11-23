@@ -1,0 +1,13 @@
+{
+  "name": "vuefront-checkout-tests",
+  "private": true,
+  "description": "Failing tests for query-string payment request forgery on the hosted checkout page.",
+  "scripts": {
+    "test": "node --test hosted-checkout.test.js"
+  },
+  "dependencies": {
+    "cjson": "0.3.3",
+    "puppeteer-core": "25.18.1",
+    "superstatic": "10.0.0"
+  }
+}
